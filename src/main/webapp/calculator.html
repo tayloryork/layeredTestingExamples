@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="calculatorController.js"></script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div ng-app="CalculatorApp" ng-controller="CalculatorController">
+        <p>Enter the operands and then select the operation.</p>
+        Operand 1: <input type="number" name="x" ng-model="x" ng-init="x=5"/><br>
+        Operand 2: <input type="number" name="y" ng-model="y" ng-init="y=2"/><br>
+        <input type="button" name="Add" value="Add" ng-click="add()"/>
+        <input type="button" name="Subtract" value="Subtract" ng-click="subtract()"/>
+        <input type="button" name="Multiply" value="Multiply" ng-click="multiply()"/>
+        <input type="button" name="Divide" value="Divide" ng-click="divide()"/> <br/>
+        Result: <span ng-bind="result" />
+    </div>
+</body>
+</html>
