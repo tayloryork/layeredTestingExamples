@@ -4,22 +4,22 @@ controller('CalculatorController', function ($scope, $http) {
     $scope.result = "res";
 
     $scope.add = function () {
-        $http.get('./rest/calc/add/' + $scope.x + '/' + $scope.y).success(function (data) {
+        $http.get('./calc/add/' + $scope.x + '/' + $scope.y).success(function (data) {
             $scope.result = data;
         });
     };
     $scope.subtract = function () {
-        $http.get('./rest/calc/subtract/' + $scope.x + '/' + $scope.y).success(function (data) {
+        $http.get('./calc/subtract/' + $scope.x + '/' + $scope.y).success(function (data) {
             $scope.result = data;
         });
     };
     $scope.multiply = function () {
-        $http.get('./rest/calc/multiply/' + $scope.x + '/' + $scope.y).success(function (data) {
+        $http.get('./calc/multiply/' + $scope.x + '/' + $scope.y).success(function (data) {
             $scope.result = data;
         });
     };
     $scope.divide = function () {
-        $http.get('./rest/calc/divide/' + $scope.x + '/' + $scope.y).success(function (data) {
+        $http.get('./calc/divide/' + $scope.x + '/' + $scope.y).success(function (data) {
             $scope.result = data;
         });
     };

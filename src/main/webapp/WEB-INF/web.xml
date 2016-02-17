@@ -20,29 +20,28 @@
         <location>/notFound.html</location>
     </error-page>
 
-
-    <!-- Override init parameter to avoid nasty -->
-    <!-- file locking issue on windows.         -->
-    <servlet>
-        <servlet-name>LayeredTestingExamples</servlet-name>
-        <servlet-class>
-            org.glassfish.jersey.servlet.ServletContainer
-        </servlet-class>
+    <filter>
+        <filter-name>Jersey Filter</filter-name>
+        <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>co.tyec.layeredTestingExamples.LayeredTestingExamplesApplication</param-value>
         </init-param>
+        <init-param>
+            <param-name>jersey.config.servlet.filter.staticContentRegex</param-name>
+            <param-value>(/.*html)|(/.*js)</param-value>
+        </init-param>
 
+        <!-- Override init parameter to avoid nasty -->
+        <!-- file locking issue on windows.         -->
         <init-param>
             <param-name>useFileMappedBuffer</param-name>
             <param-value>false</param-value>
         </init-param>
-
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LayeredTestingExamples</servlet-name>
+    </filter>
+    <filter-mapping>
+        <filter-name>Jersey Filter</filter-name>
         <url-pattern>/*</url-pattern>
-    </servlet-mapping>
+    </filter-mapping>
 
 </web-app>
