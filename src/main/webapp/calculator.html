@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<html lang="en" ng-app="CalculatorApp" >
+
 <head>
     <title>Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
@@ -7,7 +9,7 @@
 </head>
 <body>
     <h1>Calculator</h1>
-    <div ng-app="CalculatorApp" ng-controller="CalculatorController">
+    <div ng-controller="CalculatorController">
         <p>Enter the operands and then select the operation.</p>
         Operand 1: <input type="number" name="x" ng-model="x" ng-init="x=5"/><br>
         Operand 2: <input type="number" name="y" ng-model="y" ng-init="y=2"/><br>
