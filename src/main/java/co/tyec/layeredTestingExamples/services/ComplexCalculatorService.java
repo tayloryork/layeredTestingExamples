@@ -1,7 +1,7 @@
 
 package co.tyec.layeredTestingExamples.services;
 
-import com.google.inject.Singleton;
+import javax.inject.Singleton;
 
 /**
  * Created by yorta01 on 2/8/2016.

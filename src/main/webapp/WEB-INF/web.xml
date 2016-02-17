@@ -5,43 +5,44 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-	<display-name>LayeredTestingExamples WebApp</display-name>
-	<description>
-		A simple application with many layers to show how to test each layer.
-	</description>
-
-	<listener>
-		<listener-class>co.tyec.layeredTestingExamples.LayeredTestingGuiceServletContextListener</listener-class>
-	</listener>
-
-	<filter>
-		<filter-name>guiceFilter</filter-name>
-		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>guiceFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
-	<error-page>
-		<error-code>404</error-code>
-		<location>/notFound.html</location>
-	</error-page>
+    <display-name>LayeredTestingExamples WebApp</display-name>
+    <description>
+        A simple application with many layers to show how to test each layer.
+    </description>
 
 
-	<!-- Override init parameter to avoid nasty -->
-	<!-- file locking issue on windows.         -->
-	<servlet>
-		<servlet-name>default</servlet-name>
-		<init-param>
-			<param-name>useFileMappedBuffer</param-name>
-			<param-value>false</param-value>
-		</init-param>
-	</servlet>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/notFound.html</location>
+    </error-page>
+
+
+    <!-- Override init parameter to avoid nasty -->
+    <!-- file locking issue on windows.         -->
+    <servlet>
+        <servlet-name>LayeredTestingExamples</servlet-name>
+        <servlet-class>
+            org.glassfish.jersey.servlet.ServletContainer
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>co.tyec.layeredTestingExamples.LayeredTestingExamplesApplication</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>useFileMappedBuffer</param-name>
+            <param-value>false</param-value>
+        </init-param>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LayeredTestingExamples</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>
