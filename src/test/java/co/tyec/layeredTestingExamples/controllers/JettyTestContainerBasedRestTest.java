@@ -14,7 +14,9 @@ import org.glassfish.jersey.test.spi.TestContainerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class JettyBasedRestTest extends JerseyTest
+import co.tyec.layeredTestingExamples.LayeredTestingExamplesApplication;
+
+public class JettyTestContainerBasedRestTest extends JerseyTest
 {
 
     @Override
@@ -22,8 +24,7 @@ public class JettyBasedRestTest extends JerseyTest
     {
         enable(TestProperties.LOG_TRAFFIC);
         enable(TestProperties.DUMP_ENTITY);
-
-        return new ResourceConfig(ComplexCalulatorController.class);
+        return new LayeredTestingExamplesApplication();
     }
 
 
@@ -36,7 +37,7 @@ public class JettyBasedRestTest extends JerseyTest
     public void testAddRest() throws IOException
     {
         Response addResponse = target("calc/add/1/2").request().get();
-        String addText = String.valueOf(addResponse.getEntity());
+        String addText = addResponse.readEntity(String.class);
         Assert.assertEquals("3", addText);
 
         System.out.println("Test Response: " + addText);
