@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import co.tyec.layeredTestingExamples.LayeredTestingExamplesApplication;
 
-public class JettyTestContainerBasedRestTest extends JerseyTest
+public class JerseyJettyTestContainerFactoryBasedRestTest extends JerseyTest
 {
 
     @Override

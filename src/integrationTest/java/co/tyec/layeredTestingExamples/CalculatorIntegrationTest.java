@@ -1,5 +1,5 @@
 
-package co.tyec.layeredTesting.Examples;
+package co.tyec.layeredTestingExamples;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,13 +11,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import co.tyec.layeredTesting.pageObjects.CalculatorPage;
-import co.tyec.layeredTesting.pageObjects.LTENavigation;
+import co.tyec.layeredTestingExamples.pageObjects.CalculatorPage;
+import co.tyec.layeredTestingExamples.pageObjects.LTENavigation;
 
 /**
  * Created by yorta01 on 2/16/2016.
  */
-public class CalculatorIntTest
+public class CalculatorIntegrationTest
 {
 
     private static WebDriver webDriver;

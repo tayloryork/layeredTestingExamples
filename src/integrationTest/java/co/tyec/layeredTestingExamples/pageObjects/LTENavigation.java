@@ -1,5 +1,5 @@
 
-package co.tyec.layeredTesting.pageObjects;
+package co.tyec.layeredTestingExamples.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

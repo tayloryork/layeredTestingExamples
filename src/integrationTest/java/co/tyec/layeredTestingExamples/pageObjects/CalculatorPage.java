@@ -1,5 +1,6 @@
+package co.tyec.layeredTestingExamples.pageObjects;
 
-package co.tyec.layeredTesting.pageObjects;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -87,6 +88,9 @@ public class CalculatorPage
 
     private void waitForAngular()
     {
+        // Oddly enough, NgWebDriver doesn't set this.
+        webDriver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
+
         new NgWebDriver((JavascriptExecutor) webDriver).waitForAngularRequestsToFinish();
     }
 }
