@@ -1,6 +1,9 @@
 # layeredTestingExamples
 This project should show to to test a web application at muliple 'levels': unit, rest (local), installed rest (desktop installer or cloud), installed GUI
 
+# Travis-CI
+[![Build Status](https://travis-ci.org/tayloryork/layeredTestingExamples.svg?branch=master)](https://travis-ci.org/tayloryork/layeredTestingExamples)
+
 Unit Tests Layer: `gradle test`
 - Junit tests in /src/test/java
 
