@@ -8,5 +8,13 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 
-# `gradle build` should run compile, test, restTest, integrationTest, package
+# See diagram here for default gradle task dependencies
+# https://docs.gradle.org/current/userguide/java_plugin.html
+# We have added a few dependencies to check.
+
+# Build the code first, before testing
+install: gradle assemble
+
+# Run all tests
+# `gradle build` should run compile, test, restTest, integrationTest, check, assemble
 script: gradle build
