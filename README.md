@@ -13,21 +13,29 @@ Integration Tests Layer: `gradle integrationTest`
 - Then runs Junit tests in /src/integrationTest/java
 
 Todo:
-
-Split "Local Integration" and "Deployed Integration" tests.
-Local Integration Tests are tests run against Jetty/gradle.
-Deployed Integration Tests are run against an Installed/Deployed server.
+[x] Create Unit tests
+[x] Create Unit test gradle task
+[x] Create Rest tests
+[x] Create Rest test gradle task
+[x] Create Integration tests
+[x] Create Integration test gradle task
+[ ] Create installer & Gradle task
+[ ] Install the Installer
+[ ] Implement UUT Propery files (Unit under test ~ which server & port are you testing against)
+[ ] Split "Local Integration" and "Deployed Integration" tests.
+[ ] Local Integration Tests are tests run against Jetty/gradle.
+[ ] Deployed Integration Tests are run against an Installed/Deployed server.
 
 Create Installer: `gradle installer`
-- Create installer using install4j/install...something.  whatever is free.
+- Create installer using install4j/installAnywhere/izpack...something.  whatever is free.
 
-Local Install Installer: `gradle runInstallLocally`
-- Install the installer file to the local pc
+Locally Install App: `gradle runInstallLocally`
+- Install the installer file to the local environment
 
-Local Install Installer: `gradle startLocalInstall`
-- Start the "Deployed"
+Start the installed server: `gradle startLocalInstall`
+- Execute C:\Progam Files\layeredTestingExamples\bin\start.bat or whatever we have.
 
-Run "Deployed" Integration Tests: `gradle deployedIntegrationTest`
+Run "Deployed" Integration Tests: `gradle deployedIntegrationTest -Duut.propfile=localhost.properties`
 - Run the integration tests against the "Deployed" Server, ie, the server which has our app installed to it
 
 We could maybe even publish to a cloud provider instead of creating an installer.
