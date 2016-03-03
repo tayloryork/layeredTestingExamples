@@ -1,18 +1,16 @@
 
 package co.tyec.layeredTestingExamples;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import co.tyec.layeredTestingExamples.pageObjects.CalculatorPage;
 import co.tyec.layeredTestingExamples.pageObjects.LTENavigation;
+import co.tyec.testFramework.UnitUnderTestProperties;
 
 /**
  * Created by yorta01 on 2/16/2016.

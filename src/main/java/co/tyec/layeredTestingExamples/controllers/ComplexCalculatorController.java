@@ -17,11 +17,11 @@ import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
  */
 @Path("calc")
 @Produces(TEXT_PLAIN)
-public class ComplexCalulatorController
+public class ComplexCalculatorController
 {
 
     @Inject
-    ComplexCalculatorService calc;
+    ComplexCalculatorService calculatorService;
 
     @GET
     public String get()
@@ -37,28 +37,28 @@ public class ComplexCalulatorController
     @Path("add/{x}/{y}")
     public String add(@PathParam(value = "x") Integer x, @PathParam(value = "y") Integer y)
     {
-        return Integer.toString(calc.add(x, y));
+        return Integer.toString(calculatorService.add(x, y));
     }
 
     @GET
     @Path("subtract/{x}/{y}")
     public String subtract(@PathParam(value = "x") Integer x, @PathParam(value = "y") Integer y)
     {
-        return Integer.toString(calc.subtract(x, y));
+        return Integer.toString(calculatorService.subtract(x, y));
     }
 
     @GET
     @Path("multiply/{x}/{y}")
     public String multiply(@PathParam(value = "x") Integer x, @PathParam(value = "y") Integer y)
     {
-        return Integer.toString(calc.multiply(x, y));
+        return Integer.toString(calculatorService.multiply(x, y));
     }
 
     @GET
     @Path("divide/{x}/{y}")
     public String divide(@PathParam(value = "x") Integer x, @PathParam(value = "y") Integer y)
     {
-        return Integer.toString(calc.divide(x, y));
+        return Integer.toString(calculatorService.divide(x, y));
     }
 
 }

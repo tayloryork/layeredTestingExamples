@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
-<html lang="en" ng-app="CalculatorApp" >
+<html lang="en" ng-app="CalculatorApp">
 
 <head>
     <title>Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="calculatorController.js"></script>
 </head>
 <body>
-    <h1>Calculator</h1>
+<div class="container">
+    <div class="page-header"><h1>Calculator</h1></div>
     <div ng-controller="CalculatorController">
         <p>Enter the operands and then select the operation.</p>
-        Operand 1: <input type="number" name="x" ng-model="x" ng-init="x=5"/><br>
-        Operand 2: <input type="number" name="y" ng-model="y" ng-init="y=2"/><br>
-        <input type="button" name="Add" value="Add" ng-click="add()"/>
-        <input type="button" name="Subtract" value="Subtract" ng-click="subtract()"/>
-        <input type="button" name="Multiply" value="Multiply" ng-click="multiply()"/>
-        <input type="button" name="Divide" value="Divide" ng-click="divide()"/> <br/>
-        Result: <span ng-bind="result" />
+        <p>Operand 1: <input type="number" name="x" ng-model="x" ng-init="x=5"/></p>
+        <p>Operand 2: <input type="number" name="y" ng-model="y" ng-init="y=2"/></p>
+        <p><button class="btn btn-primary" type="button" name="Add" value="Add" ng-click="add()">Add</button>
+        <button class="btn btn-primary" type="button" name="Subtract" value="Subtract" ng-click="subtract()">Subtract</button>
+        <button class="btn btn-primary" type="button" name="Multiply" value="Multiply" ng-click="multiply()">Multiply</button>
+        <button class="btn btn-primary" type="button" name="Divide" value="Divide" ng-click="divide()">Divide</button></p>
+
+        Result: <span ng-bind="result"/>
     </div>
+</div>
 </body>
 </html>
