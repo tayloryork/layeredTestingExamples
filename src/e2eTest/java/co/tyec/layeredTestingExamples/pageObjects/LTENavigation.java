@@ -4,7 +4,7 @@ package co.tyec.layeredTestingExamples.pageObjects;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import co.tyec.testFramework.UnitUnderTestProperties;
+import co.tyec.testFramework.SystemUnderTestProperties;
 
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
@@ -16,11 +16,11 @@ public class LTENavigation
 
     private final WebDriver webDriver;
 
-    String hostname = UnitUnderTestProperties.get("hostname");
+    String hostname = SystemUnderTestProperties.get("hostname");
 
-    String port = UnitUnderTestProperties.get("port");
+    String port = SystemUnderTestProperties.get("port");
 
-    String baseUrl = UnitUnderTestProperties.get("baseUrl");
+    String baseUrl = SystemUnderTestProperties.get("baseUrl");
 
     public LTENavigation(WebDriver webDriver)
     {

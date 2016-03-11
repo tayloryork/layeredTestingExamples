@@ -40,7 +40,7 @@ Todo:
 [x] Create Integration test gradle task
 [ ] Create installer & Gradle task
 [ ] Install the Installer
-[ ] Implement UUT Propery files (Unit under test ~ which server & port are you testing against)
+[ ] Implement Sut Propery files (System Under Test ~ which server & port are you testing against)
 [ ] Split "Local Integration" and "Deployed Integration" tests.
 [ ] Local Integration Tests are tests run against Jetty/gradle.
 [ ] Deployed Integration Tests are run against an Installed/Deployed server.

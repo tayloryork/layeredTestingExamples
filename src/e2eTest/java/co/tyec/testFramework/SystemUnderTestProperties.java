@@ -23,10 +23,10 @@ import org.junit.Assert;
  * This is solvable via beforeClass/initialization methods in UnitBaseTest, RestBaseTest, IntBaseTest, etc.
  *
  */
-public class UnitUnderTestProperties
+public class SystemUnderTestProperties
 {
 
-    private static Properties uutProperties;
+    private static Properties sutProperties;
 
     /**
      * There are Multiple ways to start a test: <br/>
@@ -34,45 +34,45 @@ public class UnitUnderTestProperties
      * 2. Running a test method, class, or suite via Gradle/Maven 'test' target <br/>
      * <br/>
      * Gradle/Maven Usage: <br/>
-     * <code>gradle test -Duut.propfile=hostname1001.properties</code> <br/>
-     * -D sets the JVM System Property 'uut.propfile'.  <br/>
+     * <code>gradle test -Dsut.propfile=hostname1001.properties</code> <br/>
+     * -D sets the JVM System Property 'sut.propfile'.  <br/>
      * <br/>
      * When you run via an IDE such as Gradle or Eclipse, you can specify command line arguments and JVM system properties such as
-     * uut.propfile.  However, this can be annoying in
-     * Eclipse/Intellij when you right click on a unit test and select "Run JUnit" because you do not have a chance to set uut.propfile.
-     * The solution to this is to edit the UUTDefaults.properties and set the correct uut.propfile. <br/>
+     * sut.propfile.  However, this can be annoying in
+     * Eclipse/Intellij when you right click on a unit test and select "Run JUnit" because you do not have a chance to set sut.propfile.
+     * The solution to this is to edit the SutDefaults.properties and set the correct sut.propfile. <br/>
      */
     public static void init()
     {
-        uutProperties = new Properties();
+        sutProperties = new Properties();
 
         try
         {
-            loadUutDefaults();
-            loadUutPropfile();
+            loadSutDefaults();
+            loadSutPropfile();
         }
         catch (Exception e)
         {
-            throw new RuntimeException("UnitUnderTestProperties initalization has failed!", e);
+            throw new RuntimeException("SystemUnderTestProperties initalization has failed!", e);
         }
     }
 
-    private static void loadUutDefaults() throws Exception
+    private static void loadSutDefaults() throws Exception
     {
-        System.out.println("Loading UUTDefaults.properties from classpath:/"
-                        + UnitUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/UUTDefaults.properties");
+        System.out.println("Loading SutDefaults.properties from classpath:/"
+                        + SystemUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/SutDefaults.properties");
         Properties testHarnessProperties = new Properties();
 
-        InputStream testHarnessDefaultsIS = UnitUnderTestProperties.class.getResourceAsStream("UUTDefaults.properties");
-        loadPropFileStreamIntoProperties(testHarnessDefaultsIS, "UUTDefaults.properties");
+        InputStream testHarnessDefaultsIS = SystemUnderTestProperties.class.getResourceAsStream("SutDefaults.properties");
+        loadPropFileStreamIntoProperties(testHarnessDefaultsIS, "SutDefaults.properties");
     }
 
-    private static void loadUutPropfile()
+    private static void loadSutPropfile()
     {
-        String uutPropfile = uutProperties.getProperty("uut.propfile");
-        if (uutPropfile == null || uutPropfile.isEmpty())
+        String sutPropfile = sutProperties.getProperty("sut.propfile");
+        if (sutPropfile == null || sutPropfile.isEmpty())
         {
-            Assert.fail("uut.properties has not been set. Initialization failed. Please set uut.properties via java command line -Duut.propfile=filename or add a default to UUTDefaults.properties");
+            Assert.fail("sut.properties has not been set. Initialization failed. Please set sut.properties via java command line -Dsut.propfile=filename or add a default to SutDefaults.properties");
         }
         // We'll allow two locations.
         // classpath:/filename.properties
@@ -80,28 +80,28 @@ public class UnitUnderTestProperties
         // classpath:/co/tyec/testFramework/filename.properties
 
         // First try classpath:/co/tyec/testFramework/filename.properties
-        InputStream uutPropFileStream = UnitUnderTestProperties.class.getResourceAsStream(uutPropfile);
-        if (uutPropFileStream != null)
+        InputStream sutPropFileStream = SystemUnderTestProperties.class.getResourceAsStream(sutPropfile);
+        if (sutPropFileStream != null)
         {
-            System.out.println("Loading uut.propfile from classpath:/" + UnitUnderTestProperties.class.getCanonicalName().replace(".", "/")
-                            + "/" + uutPropfile);
+            System.out.println("Loading sut.propfile from classpath:/" + SystemUnderTestProperties.class.getCanonicalName().replace(".", "/")
+                            + "/" + sutPropfile);
         }
         else
         {
             // next try classpath:/filename.properties
-            uutPropFileStream = UnitUnderTestProperties.class.getClassLoader().getResourceAsStream(uutPropfile);
+            sutPropFileStream = SystemUnderTestProperties.class.getClassLoader().getResourceAsStream(sutPropfile);
 
-            if (uutPropFileStream != null)
+            if (sutPropFileStream != null)
             {
-                System.out.println("Loading uut.propfile from classpath:/"
-                                + UnitUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/" + uutPropfile);
+                System.out.println("Loading sut.propfile from classpath:/"
+                                + SystemUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/" + sutPropfile);
             }
             else
             {
-                Assert.fail("The uut.propfile resource [" + uutPropfile + "] was not found on the classpath. Initialization failed.");
+                Assert.fail("The sut.propfile resource [" + sutPropfile + "] was not found on the classpath. Initialization failed.");
             }
         }
-        loadPropFileStreamIntoProperties(uutPropFileStream, uutPropfile);
+        loadPropFileStreamIntoProperties(sutPropFileStream, sutPropfile);
     }
 
     public static void loadPropFileStreamIntoProperties(InputStream propFileInputStream, String propFilename)
@@ -117,10 +117,10 @@ public class UnitUnderTestProperties
             for (String name : propertiesHandler.stringPropertyNames())
             {
                 String value = propertiesHandler.getProperty(name);
-                String orig = System.getProperty(name, uutProperties.getProperty(name));
+                String orig = System.getProperty(name, sutProperties.getProperty(name));
                 if (orig == null || orig.isEmpty())
                 {
-                    uutProperties.setProperty(name, value);
+                    sutProperties.setProperty(name, value);
                     System.out.println(String.format("%s - Set: [%s = %s]", propFilename, name, value));
                 }
                 else
@@ -143,19 +143,19 @@ public class UnitUnderTestProperties
 
     public static String get(String name, String defaultValue)
     {
-        if (uutProperties == null)
+        if (sutProperties == null)
         {
             init();
         }
-        return uutProperties.getProperty(name, defaultValue);
+        return sutProperties.getProperty(name, defaultValue);
     }
 
     public static void set(String name, String value)
     {
-        if (uutProperties == null)
+        if (sutProperties == null)
         {
             init();
         }
-        uutProperties.setProperty(name, value);
+        sutProperties.setProperty(name, value);
     }
 }
