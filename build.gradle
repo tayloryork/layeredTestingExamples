@@ -79,6 +79,7 @@ test {
     exclude "**/*RestTest.*"
     //outputs.upToDateWhen { false }
 }
+
 task e2eTest(type: Test) {
     group 'verification'
     dependsOn 'test', 'restTest', 'appBeforeIntegrationTest'

@@ -14,7 +14,7 @@ import co.tyec.layeredTestingExamples.pageObjects.LTENavigation;
 /**
  * Created by yorta01 on 2/16/2016.
  */
-public class CalculatorIntegrationTest
+public class CalculatorIntegrationE2eTest
 {
 
     private static WebDriver webDriver;
