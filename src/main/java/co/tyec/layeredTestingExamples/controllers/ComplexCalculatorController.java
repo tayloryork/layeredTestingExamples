@@ -2,7 +2,6 @@
 package co.tyec.layeredTestingExamples.controllers;
 
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
-import static javax.ws.rs.core.MediaType.TEXT_HTML;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

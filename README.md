@@ -11,9 +11,25 @@ Rest/Api Tests Layer: `gradle restTest`
 - Starts a very fast Jersey JettyTestContainer
 - Then runs Junit tests in /src/restTest/java
 
-Integration Tests Layer: `gradle integrationTest`
+DB Unit Tests Layer: `gradle dbTest`
+- Starts an in memory DB
+- Then runs Junit tests in /src/dbTest/java
+
+Mocked Dep-E2E Tests Layer: `gradle mockedDepsE2ETest`
+- Real UI
 - Starts a full Jetty server for our Container
-- Then runs Junit tests in /src/integrationTest/java
+- Mocked out BIG dependencies.
+- Heavy Dependency (DB, Ldap, etc) setup for each test or test suite.
+- Then runs Junit tests in /src/localE2ETest/java
+
+E2E Tests Layer: `gradle E2ETest -host myVm1`
+- Real UI
+- Runs againts and INSTALLED server / cloud deployment.
+- Very correct communication between all components.
+- Can be any host. localhost:8080, myVm1:8080, etc.
+- Minimal Dependency changes for tests. (Avoid inserting into the db)
+- Then runs Junit tests in /src/deploymentE2ETest/java
+- NOTHING mocked.
 
 Todo:
 [x] Create Unit tests

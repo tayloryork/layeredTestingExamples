@@ -1,3 +1,4 @@
+
 package co.tyec.layeredTestingExamples;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
@@ -11,7 +12,8 @@ public class LayeredTestingExamplesBinder extends AbstractBinder
 {
 
     @Override
-    protected void configure() {
+    protected void configure()
+    {
         System.out.println("Configuring Application Binder");
         bind(new ComplexCalculatorService()).to(ComplexCalculatorService.class);
     }

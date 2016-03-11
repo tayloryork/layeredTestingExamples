@@ -27,7 +27,8 @@ public class GreetingController
     @GET
     public String greeting(@PathParam(value = "name") String name)
     {
-        if(name == null) {
+        if (name == null)
+        {
             name = "World";
         }
         return new Greeting(counter.incrementAndGet(), String.format(template, name)).getContent();

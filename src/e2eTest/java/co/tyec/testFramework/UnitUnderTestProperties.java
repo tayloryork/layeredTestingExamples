@@ -3,8 +3,6 @@ package co.tyec.testFramework;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -52,7 +50,9 @@ public class UnitUnderTestProperties
         {
             loadUutDefaults();
             loadUutPropfile();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new RuntimeException("UnitUnderTestProperties initalization has failed!", e);
         }
     }
@@ -60,7 +60,7 @@ public class UnitUnderTestProperties
     private static void loadUutDefaults() throws Exception
     {
         System.out.println("Loading UUTDefaults.properties from classpath:/"
-                                   + UnitUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/UUTDefaults.properties");
+                        + UnitUnderTestProperties.class.getCanonicalName().replace(".", "/") + "/UUTDefaults.properties");
         Properties testHarnessProperties = new Properties();
 
         InputStream testHarnessDefaultsIS = UnitUnderTestProperties.class.getResourceAsStream("UUTDefaults.properties");

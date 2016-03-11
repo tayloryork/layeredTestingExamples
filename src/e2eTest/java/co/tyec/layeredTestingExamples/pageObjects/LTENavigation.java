@@ -4,9 +4,9 @@ package co.tyec.layeredTestingExamples.pageObjects;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import com.paulhammant.ngwebdriver.NgWebDriver;
-
 import co.tyec.testFramework.UnitUnderTestProperties;
+
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 /**
  * Created by yorta01 on 2/16/2016.

@@ -1,3 +1,4 @@
+
 package co.tyec.layeredTestingExamples.services;
 
 import org.junit.Assert;
@@ -8,24 +9,27 @@ import org.junit.Test;
  */
 public class ComplexCalculatorServiceUnitTest
 {
+
     @Test
-    public void addUnitTest(){
+    public void addUnitTest()
+    {
         ComplexCalculatorService complexCalculatorService = new ComplexCalculatorService();
         int result = complexCalculatorService.add(4, 9);
 
-        Assert.assertEquals((4+9), result);
+        Assert.assertEquals((4 + 9), result);
     }
 
-
     @Test
-    public void divideUnitTest(){
+    public void divideUnitTest()
+    {
         ComplexCalculatorService complexCalculatorService = new ComplexCalculatorService();
 
-        Assert.assertEquals((100/2), complexCalculatorService.divide(100, 2));
+        Assert.assertEquals((100 / 2), complexCalculatorService.divide(100, 2));
     }
 
     @Test(expected = RuntimeException.class)
-    public void divideByZeroTest() {
+    public void divideByZeroTest()
+    {
         ComplexCalculatorService complexCalculatorService = new ComplexCalculatorService();
         complexCalculatorService.divide(100, 0);
     }

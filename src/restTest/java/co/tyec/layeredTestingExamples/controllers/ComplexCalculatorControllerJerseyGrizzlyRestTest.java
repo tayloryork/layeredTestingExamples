@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory;
-import org.glassfish.jersey.test.inmemory.InMemoryTestContainerFactory;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +19,8 @@ public class ComplexCalculatorControllerJerseyGrizzlyRestTest extends JerseyTest
 {
 
     @Override
-    public Application configure() {
+    public Application configure()
+    {
         enable(TestProperties.LOG_TRAFFIC);
         enable(TestProperties.DUMP_ENTITY);
 
@@ -29,7 +29,8 @@ public class ComplexCalculatorControllerJerseyGrizzlyRestTest extends JerseyTest
     }
 
     @Override
-    protected TestContainerFactory getTestContainerFactory() {
+    protected TestContainerFactory getTestContainerFactory()
+    {
         return new GrizzlyTestContainerFactory();
     }
 
@@ -49,6 +50,16 @@ public class ComplexCalculatorControllerJerseyGrizzlyRestTest extends JerseyTest
         Response addResponse = target("calc/subtract/3/2").request().get();
         String addText = addResponse.readEntity(String.class);
         Assert.assertEquals("1", addText);
+
+        System.out.println("Test Response: " + addText);
+    }
+
+    @Test
+    public void testMulRest() throws IOException
+    {
+        Response addResponse = target("calc/multiply/3/2").request().get();
+        String addText = addResponse.readEntity(String.class);
+        Assert.assertEquals("6", addText);
 
         System.out.println("Test Response: " + addText);
     }

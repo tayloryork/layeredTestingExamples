@@ -10,7 +10,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import co.tyec.layeredTestingExamples.pageObjects.CalculatorPage;
 import co.tyec.layeredTestingExamples.pageObjects.LTENavigation;
-import co.tyec.testFramework.UnitUnderTestProperties;
 
 /**
  * Created by yorta01 on 2/16/2016.
@@ -19,6 +18,15 @@ public class CalculatorIntegrationTest
 {
 
     private static WebDriver webDriver;
+
+    @AfterClass
+    public static void afterMethod()
+    {
+        if (webDriver != null)
+        {
+            webDriver.quit();
+        }
+    }
 
     @Before
     public void beforeMethod()
@@ -32,15 +40,6 @@ public class CalculatorIntegrationTest
         // navigate to page
         LTENavigation lteNavigation = new LTENavigation(webDriver);
         lteNavigation.goToCalculator();
-    }
-
-    @AfterClass
-    public static void afterMethod()
-    {
-        if (webDriver != null)
-        {
-            webDriver.quit();
-        }
     }
 
     @Test

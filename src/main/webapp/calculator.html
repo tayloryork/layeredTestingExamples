@@ -15,10 +15,12 @@
         <p>Enter the operands and then select the operation.</p>
         <p>Operand 1: <input type="number" name="x" ng-model="x" ng-init="x=5"/></p>
         <p>Operand 2: <input type="number" name="y" ng-model="y" ng-init="y=2"/></p>
-        <p><button class="btn btn-primary" type="button" name="Add" value="Add" ng-click="add()">Add</button>
-        <button class="btn btn-primary" type="button" name="Subtract" value="Subtract" ng-click="subtract()">Subtract</button>
-        <button class="btn btn-primary" type="button" name="Multiply" value="Multiply" ng-click="multiply()">Multiply</button>
-        <button class="btn btn-primary" type="button" name="Divide" value="Divide" ng-click="divide()">Divide</button></p>
+        <p>
+            <button class="btn btn-primary" type="button" name="Add" value="Add" ng-click="add()">Add</button>
+            <button class="btn btn-primary" type="button" name="Subtract" value="Subtract" ng-click="subtract()">Subtract</button>
+            <button class="btn btn-primary" type="button" name="Multiply" value="Multiply" ng-click="multiply()">Multiply</button>
+            <button class="btn btn-primary" type="button" name="Divide" value="Divide" ng-click="divide()">Divide</button>
+        </p>
 
         Result: <span ng-bind="result"/>
     </div>

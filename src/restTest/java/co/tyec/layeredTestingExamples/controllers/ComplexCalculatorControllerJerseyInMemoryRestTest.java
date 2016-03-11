@@ -2,23 +2,18 @@
 package co.tyec.layeredTestingExamples.controllers;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.inmemory.InMemoryTestContainerFactory;
-import org.glassfish.jersey.test.jetty.JettyTestContainerFactory;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 import co.tyec.layeredTestingExamples.LayeredTestingExamplesApplication;
-import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
 
 public class ComplexCalculatorControllerJerseyInMemoryRestTest extends JerseyTest
 {
@@ -55,6 +50,16 @@ public class ComplexCalculatorControllerJerseyInMemoryRestTest extends JerseyTes
         Response addResponse = target("calc/subtract/3/2").request().get();
         String addText = addResponse.readEntity(String.class);
         Assert.assertEquals("1", addText);
+
+        System.out.println("Test Response: " + addText);
+    }
+
+    @Test
+    public void testMulRest() throws IOException
+    {
+        Response addResponse = target("calc/multiply/3/2").request().get();
+        String addText = addResponse.readEntity(String.class);
+        Assert.assertEquals("6", addText);
 
         System.out.println("Test Response: " + addText);
     }

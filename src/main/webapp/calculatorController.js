@@ -1,5 +1,4 @@
-var calculatorApp = angular.module('CalculatorApp', []).
-controller('CalculatorController', function ($scope, $http) {
+var calculatorApp = angular.module('CalculatorApp', []).controller('CalculatorController', function ($scope, $http) {
     $scope.operator = "+";
     $scope.result = "res";
 
