@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import co.tyec.layeredTestingExamples.DbManager;
 
 /**
  * Created by yorta01 on 3/10/2016.
@@ -19,7 +18,6 @@ public class InMemoryDb
     {
         try
         {
-            DbManager.startDB();
             Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection("jdbc:h2:mem:test", "sa", "");
             System.out.println(

@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import co.tyec.layeredTestingExamples.MyTestClass;
 import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
 
 /**
@@ -21,6 +22,9 @@ public class ComplexCalculatorController
 
     @Inject
     ComplexCalculatorService calculatorService;
+
+    @Inject
+    MyTestClass myTestClass;
 
     @GET
     public String get()
@@ -36,6 +40,7 @@ public class ComplexCalculatorController
     @Path("add/{x}/{y}")
     public String add(@PathParam(value = "x") Integer x, @PathParam(value = "y") Integer y)
     {
+        System.out.println("From CalculatorController, MyTestClass: " + myTestClass);
         return Integer.toString(calculatorService.add(x, y));
     }
 

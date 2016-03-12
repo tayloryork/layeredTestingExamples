@@ -1,8 +1,14 @@
 
 package co.tyec.layeredTestingExamples;
 
+import java.lang.annotation.Annotation;
+import java.sql.Connection;
+
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
+import co.tyec.layeredTestingExamples.dao.CalculatorEventDao;
+import co.tyec.layeredTestingExamples.dao.CalculatorEventDaoImpl;
+import co.tyec.layeredTestingExamples.database.LteDatabaseConnectionFactory;
 import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
 
 /**
@@ -10,11 +16,15 @@ import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
  */
 public class LayeredTestingExamplesBinder extends AbstractBinder
 {
-
     @Override
     protected void configure()
     {
         System.out.println("Configuring Application Binder");
-        bind(new ComplexCalculatorService()).to(ComplexCalculatorService.class);
+        bind(ComplexCalculatorService.class).to(ComplexCalculatorService.class);
+
+        bind(CalculatorEventDaoImpl.class).to(CalculatorEventDao.class);
+        bind(MyTestClass.class).to(MyTestClass.class);
+
+        bindFactory(LteDatabaseConnectionFactory.class).to(Connection.class);
     }
 }

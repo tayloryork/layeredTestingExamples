@@ -14,7 +14,7 @@ public class LayeredTestingExamplesApplication extends ResourceConfig
         System.out.println("Starting With LayeredTestingExamplesApplication()");
 
         register(new LayeredTestingExamplesBinder());
-        packages("co.tyec.layeredTestingExamples");
+        packages(true, "co.tyec.layeredTestingExamples");
 
         System.out.println("Finished With LayeredTestingExamplesApplication()");
     }
