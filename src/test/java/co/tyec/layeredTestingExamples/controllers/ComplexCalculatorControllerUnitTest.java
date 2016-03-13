@@ -4,23 +4,34 @@ package co.tyec.layeredTestingExamples.controllers;
 import java.io.IOException;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import co.tyec.layeredTestingExamples.dao.CalculatorEventDao;
 import co.tyec.layeredTestingExamples.services.ComplexCalculatorService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ComplexCalculatorControllerUnitTest
 {
 
-    @Spy
-    ComplexCalculatorService complexCalculatorService;
+    @Mock
+    CalculatorEventDao calculatorEventDao;
 
     @InjectMocks
+    ComplexCalculatorService complexCalculatorService;
+
     ComplexCalculatorController complexCalculatorController;
+
+    @Before
+    public void setupMethods()
+    {
+        complexCalculatorController = new ComplexCalculatorController();
+        complexCalculatorController.calculatorService = complexCalculatorService;
+    }
 
     @Test
     public void testAddRest() throws IOException

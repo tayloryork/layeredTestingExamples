@@ -1,6 +1,7 @@
 
 package co.tyec.layeredTestingExamples.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface CalculatorEventDao
 
     public CalculatorEvent addEvent(String operator, int operandA, int operandB) throws SQLException;
 
+    void setConnection(Connection connection);
 }

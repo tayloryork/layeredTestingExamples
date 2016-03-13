@@ -23,12 +23,15 @@ public class CalculatorEventDaoTest
     public static void beforeCalculatorEventDaoTestClass() throws SQLException
     {
         inMemoryDb.setupCalculatorEventsTable();
+
     }
 
     @Test
     public void testGetById() throws SQLException
     {
-        CalculatorEventDao calculatorEventDao = new CalculatorEventDao(connection);
+        CalculatorEventDao calculatorEventDao = new CalculatorEventDaoImpl();
+        calculatorEventDao.setConnection(connection);
+
         CalculatorEvent event1 = calculatorEventDao.getCalculatorEvent(1);
 
         Assert.assertNotNull(event1);
@@ -40,7 +43,9 @@ public class CalculatorEventDaoTest
     @Test
     public void testGetAll() throws SQLException
     {
-        CalculatorEventDao calculatorEventDao = new CalculatorEventDao(connection);
+        CalculatorEventDao calculatorEventDao = new CalculatorEventDaoImpl();
+        calculatorEventDao.setConnection(connection);
+
         List<CalculatorEvent> events = calculatorEventDao.getAllCalculatorEvents();
 
         Assert.assertNotNull(events);

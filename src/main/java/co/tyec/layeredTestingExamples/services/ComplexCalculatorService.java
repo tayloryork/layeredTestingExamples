@@ -1,4 +1,3 @@
-
 package co.tyec.layeredTestingExamples.services;
 
 import java.sql.SQLException;
@@ -8,7 +7,6 @@ import javax.inject.Singleton;
 
 import org.jvnet.hk2.annotations.Service;
 
-import co.tyec.layeredTestingExamples.MyTestClass;
 import co.tyec.layeredTestingExamples.dao.CalculatorEventDao;
 
 /**
@@ -18,8 +16,6 @@ import co.tyec.layeredTestingExamples.dao.CalculatorEventDao;
 @Service
 public class ComplexCalculatorService
 {
-    @Inject
-    MyTestClass myTestClass;
 
     @Inject
     CalculatorEventDao calculatorEventDao;
@@ -31,13 +27,12 @@ public class ComplexCalculatorService
 
     public int add(int x, int y)
     {
-        System.out.println("From ComplexCalculatorService, myTestClass: " + myTestClass.toString());
         int answer = x + y;
         try
         {
             calculatorEventDao.addEvent("add", x, y);
         }
-        catch(SQLException e)
+        catch (SQLException e)
         {
             // just log it
             e.printStackTrace();
@@ -47,20 +42,50 @@ public class ComplexCalculatorService
 
     public int subtract(int x, int y)
     {
-        return x - y;
+        int answer = x - y;
+        try
+        {
+            calculatorEventDao.addEvent("subtract", x, y);
+        }
+        catch (SQLException e)
+        {
+            // just log it
+            e.printStackTrace();
+        }
+        return answer;
     }
 
     public int multiply(int x, int y)
     {
-        return x * y;
+        int answer = x * y;
+        try
+        {
+            calculatorEventDao.addEvent("multiply", x, y);
+        }
+        catch (SQLException e)
+        {
+            // just log it
+            e.printStackTrace();
+        }
+        return answer;
     }
 
     public int divide(int x, int y)
     {
+        try
+        {
+            calculatorEventDao.addEvent("divide", x, y);
+        }
+        catch (SQLException e)
+        {
+            // just log it
+            e.printStackTrace();
+        }
         if (y == 0)
         {
             throw new RuntimeException("Cannot divide by 0");
         }
-        return x / y;
+        int answer = x / y;
+        return answer;
     }
 }

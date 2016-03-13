@@ -20,13 +20,8 @@ import org.jvnet.hk2.annotations.Service;
 public class CalculatorEventDaoImpl implements CalculatorEventDao
 {
 
-    public CalculatorEventDaoImpl()
-    {
-        System.out.println("Instantiated CalculatorEventDaoImpl");
-    }
-
     @Inject
-    Connection connection;
+    public Connection connection;
 
     public List<CalculatorEvent> getAllCalculatorEvents() throws SQLException
     {
@@ -87,5 +82,11 @@ public class CalculatorEventDaoImpl implements CalculatorEventDao
         CalculatorEvent calculatorEvent = new CalculatorEvent(generatedId, operator, operandA, operandB);
 
         return calculatorEvent;
+    }
+
+    @Override
+    public void setConnection(Connection connection)
+    {
+        this.connection = connection;
     }
 }
