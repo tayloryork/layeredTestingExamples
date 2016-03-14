@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 import org.flywaydb.core.Flyway;
 import org.h2.tools.Server;
 
+import co.tyec.layeredTestingExamples.conf.DataSourceConf;
+
 /**
  * Created by yorta01 on 3/11/2016.
  */
@@ -15,16 +17,19 @@ import org.h2.tools.Server;
 public class H2FlywayServletContextListener implements ServletContextListener
 {
 
-    public static String jdbcUrl = "jdbc:h2:./h2db/test";
-
-    public static String jdbcUsername = "sa";
-
-    public static String jdbcPassword = "";
+    DataSourceConf dataSourceConf = new DataSourceConf();
 
     public void contextInitialized(ServletContextEvent servletContextEvent)
     {
         try
         {
+
+            String jdbcUrl = dataSourceConf.getUrl();//"jdbc:h2:./h2db/test";
+
+            String jdbcUsername = dataSourceConf.getUsername();//"sa";
+
+            String jdbcPassword = dataSourceConf.getPassword();//"";
+
             // Start H2
             Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
 
