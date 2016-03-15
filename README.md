@@ -32,18 +32,18 @@ E2E Tests Layer: `gradle E2ETest -host myVm1`
 - NOTHING mocked.
 
 Todo:
-[x] Create Unit tests
-[x] Create Unit test gradle task
-[x] Create Rest tests
-[x] Create Rest test gradle task
-[x] Create Integration tests
-[x] Create Integration test gradle task
-[ ] Create installer & Gradle task
-[ ] Install the Installer
-[ ] Implement Sut Propery files (System Under Test ~ which server & port are you testing against)
-[ ] Split "Local Integration" and "Deployed Integration" tests.
-[ ] Local Integration Tests are tests run against Jetty/gradle.
-[ ] Deployed Integration Tests are run against an Installed/Deployed server.
+- [x] Create Unit tests
+- [x] Create Unit test gradle task
+- [x] Create Rest tests
+- [x] Create Rest test gradle task
+- [x] Create Integration tests
+- [x] Create Integration test gradle task
+- [ ] Create installer & Gradle task
+- [ ] Install the Installer
+- [x] Implement Sut Propery files (System Under Test ~ which server & port are you testing against)
+- [ ] Split "Local Integration" and "Deployed Integration" tests.
+- [ ] Local Integration Tests are tests run against Jetty/gradle.
+- [ ] Deployed Integration Tests are run against an Installed/Deployed server.
 
 Create Installer: `gradle installer`
 - Create installer using install4j/installAnywhere/izpack...something.  whatever is free.
