@@ -1,38 +1,29 @@
 
 package co.tyec.layeredTestingExamples.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
-import co.tyec.layeredTestingExamples.conf.DataSourceConf;
-import co.tyec.layeredTestingExamples.database.LteDatabaseConnectionFactory;
+import co.tyec.layeredTestingExamples.LteDbBaseTest;
+import co.tyec.layeredTestingExamples.runSql.RunSql;
+import co.tyec.layeredTestingExamples.runSql.RunSqlWatcher;
 
 /**
  * Created by yorta01 on 3/10/2016.
  */
-public class CalculatorEventDaoTest
+public class CalculatorEventDaoTest extends LteDbBaseTest
 {
 
-    static DataSourceConf dataSourceConf = new DataSourceConf("test");
-
-    static LteDatabaseConnectionFactory lteDatabaseConnectionFactory = new LteDatabaseConnectionFactory(dataSourceConf);
-
-    static Connection connection;
-
-    @BeforeClass
-    public static void beforeCalculatorEventDaoTestClass() throws SQLException
-    {
-        connection = lteDatabaseConnectionFactory.provide();
-        setupCalculatorEventsTable();
-    }
+    @Rule
+    public RunSqlWatcher runSqlWatcher = new RunSqlWatcher(connection);
 
     @Test
+    @RunSql(beforeSqlFile = "before_calculator_events.sql")
     public void testGetById() throws SQLException
     {
         CalculatorEventDao calculatorEventDao = new CalculatorEventDaoImpl();
@@ -47,6 +38,7 @@ public class CalculatorEventDaoTest
     }
 
     @Test
+    @RunSql(beforeSqlFile = "before_calculator_events.sql")
     public void testGetAll() throws SQLException
     {
         CalculatorEventDao calculatorEventDao = new CalculatorEventDaoImpl();
@@ -58,6 +50,10 @@ public class CalculatorEventDaoTest
         Assert.assertEquals(1, events.size());
     }
 
+    /**
+     * This was used, but @RunSql is a better way to do this.
+     * @throws SQLException
+     */
     public static void setupCalculatorEventsTable() throws SQLException
     {
         // create table
