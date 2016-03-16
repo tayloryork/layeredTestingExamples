@@ -127,7 +127,7 @@ tasks.withType(Test) {
 
 
 task installProduct(type: Copy) {
-    //dependsOn 'buildAllProducts'
+    dependsOn 'buildAllProducts'
     from "build/output/LayeredTestingExamples"
     into "build/installTest"
 }
