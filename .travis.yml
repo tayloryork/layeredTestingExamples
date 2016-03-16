@@ -17,8 +17,8 @@ install: gradle assemble
 
 # Run all tests
 # `gradle build` should run compile, test, restTest, integrationTest, check, assemble
-script: gradle build
-
+script:
+  - gradle build
 # Run buildProduct (via gretty), installProduct, startProduct, testInstalledProduct, stopProduct
-script: gradle testInstalledProduct
+#  - gradle testInstalledProduct
 
