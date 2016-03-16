@@ -38,12 +38,12 @@ Todo:
 - [x] Create Rest test gradle task
 - [x] Create Integration tests
 - [x] Create Integration test gradle task
-- [ ] Create installer & Gradle task
-- [ ] Install the Installer
+- [x] Create installer & Gradle task
+- [x] Install the Installer
 - [x] Implement Sut Propery files (System Under Test ~ which server & port are you testing against)
-- [ ] Split "Local Integration" and "Deployed Integration" tests.
-- [ ] Local Integration Tests are tests run against Jetty/gradle.
-- [ ] Deployed Integration Tests are run against an Installed/Deployed server.
+- [x] Split "Local Integration" and "Deployed Integration" tests.
+- [x] Local Integration Tests are tests run against Jetty/gradle.
+- [x] Deployed Integration Tests are run against an Installed/Deployed server.
 
 Create Installer: `gradle installer`
 - Create installer using install4j/installAnywhere/izpack...something.  whatever is free.

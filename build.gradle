@@ -65,11 +65,13 @@ sourceSets {
             srcDirs += file('src/e2eTest/java')
             srcDirs += file('src/restTest/java')
             srcDirs += file('src/dbTest/java')
+            srcDirs += file('src/installedTest/java')
         }
         resources {
             srcDirs += file('src/e2eTest/resources')
             srcDirs += file('src/restTest/resources')
             srcDirs += file('src/dbTest/resources')
+            srcDirs += file('src/installedTest/resources')
         }
     }
 }
@@ -78,10 +80,16 @@ gretty {
     port = 8888
 }
 
+//gretty product
+product {
+    port 9999
+}
+
 // Unit test
 test {
     exclude "**/*E2eTest.*"
     exclude "**/*RestTest.*"
+    exclude "**/*InstalledTest.*"
     //outputs.upToDateWhen { false }
 }
 
@@ -105,7 +113,6 @@ task restTest(type: Test) {
     include "**/*RestTest.*"
 }
 
-
 check {
     dependsOn 'e2eTest'
     dependsOn 'restTest'
@@ -118,12 +125,37 @@ tasks.withType(Test) {
     reports.html.destination = file("${reporting.baseDir}/${name}")
 }
 
-task runApp(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    classpath += configurations.providedCompile
 
-    main = 'co.tyec.layeredTestingExamples.MainApp'
+task installProduct(type: Copy) {
+    dependsOn 'buildAllProducts'
+    from "build/output/LayeredTestingExamples"
+    into "build/installTest"
+}
 
-    // arguments to pass to the application
-    //args 'arg1'
+task startInstalledProduct() {
+    dependsOn 'installProduct'
+    doLast {
+        def processBuilder = new ProcessBuilder(['cmd', '/c', 'start.bat'])
+        processBuilder.directory(new File("build/installTest"))
+        processBuilder.start()
+    }
+}
+
+task stopInstalledProduct() {
+    doLast {
+        def processBuilder = new ProcessBuilder(['cmd', '/c', 'stop.bat'])
+        processBuilder.directory(new File("build/installTest"))
+        processBuilder.start()
+    }
+}
+
+task testInstalledProduct(type: Test) {
+    group 'verification'
+    dependsOn 'installProduct', 'startInstalledProduct'
+    finalizedBy 'stopInstalledProduct'
+    testClassesDir = sourceSets.test.output.classesDir
+    classpath = sourceSets.test.runtimeClasspath
+    include "**/*InstalledTest.*"
+
+    systemProperty 'sut.propfile', 'installed_localhost.properties'
 }
