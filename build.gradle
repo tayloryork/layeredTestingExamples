@@ -127,25 +127,47 @@ tasks.withType(Test) {
 
 
 task installProduct(type: Copy) {
-    dependsOn 'buildAllProducts'
+    //dependsOn 'buildAllProducts'
     from "build/output/LayeredTestingExamples"
     into "build/installTest"
+}
+import org.gradle.internal.os.OperatingSystem;
+
+def startInstalledProcess() {
+    def commands = []
+    if (OperatingSystem.current().isWindows()) {
+        commands = ['cmd', '/c', 'start.bat']
+    } else {
+        commands = ['start.sh']
+    }
+    def processBuilder = new ProcessBuilder(commands)
+    processBuilder.directory(new File("build/installTest"))
+    processBuilder.start()
+}
+
+def stopInstalledProcess() {
+    def commands = []
+    if (OperatingSystem.current().isWindows()) {
+        commands = ['cmd', '/c', 'stop.bat']
+    } else {
+        commands = ['stop.sh']
+    }
+    def processBuilder = new ProcessBuilder(commands)
+    processBuilder.directory(new File("build/installTest"))
+    processBuilder.start()
 }
 
 task startInstalledProduct() {
     dependsOn 'installProduct'
     doLast {
-        def processBuilder = new ProcessBuilder(['cmd', '/c', 'start.bat'])
-        processBuilder.directory(new File("build/installTest"))
-        processBuilder.start()
+        //stopInstalledProcess()
+        startInstalledProcess()
     }
 }
 
 task stopInstalledProduct() {
     doLast {
-        def processBuilder = new ProcessBuilder(['cmd', '/c', 'stop.bat'])
-        processBuilder.directory(new File("build/installTest"))
-        processBuilder.start()
+        stopInstalledProcess()
     }
 }
 
